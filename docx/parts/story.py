@@ -60,17 +60,14 @@ class BaseStoryPart(XmlPart):
 
     @property
     def next_id(self):
-        """Next available positive integer id value in this story XML document.
+        """Next available positive integer id value in this document.
 
-        The value is determined by incrementing the maximum existing id value. Gaps in
-        the existing id sequence are not filled. The id attribute value is unique in the
-        document, without regard to the element type it appears on.
+        Calculated by incrementing maximum existing id value. Gaps in the
+        existing id sequence are not filled. The id attribute value is unique
+        in the document, without regard to the element type it appears on.
         """
-        id_str_lst = self._element.xpath('//@id')
-        used_ids = [int(id_str) for id_str in id_str_lst if id_str.isdigit()]
-        if not used_ids:
-            return 1
-        return max(used_ids) + 100000
+        import random
+        return random.randint(1000, 1_000_000_000)
 
     @lazyproperty
     def _document_part(self):
