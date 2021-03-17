@@ -70,7 +70,7 @@ class BaseStoryPart(XmlPart):
         used_ids = [int(id_str) for id_str in id_str_lst if id_str.isdigit()]
         if not used_ids:
             return 1
-        return max(used_ids) + 1
+        return max(used_ids) + 100000
 
     @lazyproperty
     def _document_part(self):
